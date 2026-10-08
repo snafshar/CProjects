@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+static void run(const char *cmd){ printf("\n$ %s\n",cmd); fflush(stdout); system(cmd); }
+int main(void){
+    printf("C Network Diagnostics Monitor\n");
+    printf("==============================\n");
+    run("ip -br addr");
+    run("ip route");
+    run("ss -s");
+    run("cat /proc/net/dev");
+    printf("\nDiagnostics complete. This tool is read-only.\n");
+    return 0;
+}
