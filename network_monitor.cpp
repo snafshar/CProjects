@@ -14,10 +14,12 @@ int main() {
         "cat /proc/net/dev"
     };
 
+    int failures = 0;
     for (const auto& command : commands) {
-        std::cout << "\n$ " << command << "\n";
-        std::system(command.c_str());
+        std::cout << "\n$ " << command << '\n';
+        if (std::system(command.c_str()) != 0) ++failures;
     }
 
-    std::cout << "\nDiagnostics complete. Read-only monitor.\n";
+    std::cout << "\nDiagnostics complete. Failed commands: " << failures << '\n';
+    return failures ? EXIT_FAILURE : EXIT_SUCCESS;
 }
