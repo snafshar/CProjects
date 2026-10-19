@@ -1,0 +1,25 @@
+name: ArrayLab CI
+
+on:
+  push:
+    paths:
+      - "projects/2026-10-19/arraylab/**"
+      - ".github/workflows/arraylab-ci.yml"
+  pull_request:
+    paths:
+      - "projects/2026-10-19/arraylab/**"
+      - ".github/workflows/arraylab-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  c11-smoke-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install C compiler
+        run: sudo apt-get update && sudo apt-get install --yes build-essential
+      - name: Compile with strict warnings and run checks
+        run: sh projects/2026-10-19/arraylab/test_arraylab.sh
