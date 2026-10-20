@@ -1,11 +1,5 @@
 # C Command-Line Validation
 
-- Check `argc` before reading `argv[i]`.
-- Check conversion end pointers when using `strtol`.
-- Inspect `errno` for range errors.
-- Validate application-specific limits after conversion.
-- Distinguish missing input from a valid zero.
-- Print usage to stderr for invalid invocation.
-- Return a non-zero status for invalid arguments.
+Check `argc` before reading `argv[i]`. When parsing integers, use `strtol`, check the end pointer and `errno`, and validate application limits after conversion. Distinguish missing input from a valid zero. Print usage to stderr for invalid invocation and return a non-zero status.
 
-Avoid `atoi` when malformed input and overflow must be detected; it does not provide a reliable error-reporting interface.
+Avoid `atoi` when malformed input and overflow must be detected; it has no reliable error-reporting interface.
